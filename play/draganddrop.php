@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<src="http://code.jquery.com/jquery-1.11.3.min.js">
+<src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js">
 <div id="header">
 
 <h1><a href="../home/home.php"><img src="../image/logo.jpg" alt="logo" style="width:px;height:50px;"></a>Children Learning System</h1>
@@ -7,31 +12,52 @@
 </div>
 <head>
 	
-    <style>
-        #div1, #div2, #div3, #div4, #div5, #div6
-        {float:left; width:280px; height:180px; margin:10px;padding:10px;border:1px solid #aaaaaa;}
-    </style>
-	<script type="text/javascript">
+<script type="text/javascript">
 
-	function dragInitialize(ev) {
-	ev.dataTransfer.effectAllowed='move';
-	ev.dataTransfer.setData("Text", ev.target.getAttribute('id'));
-	return true;
-	}
+		function dragInitialize(ev) {
+		ev.dataTransfer.effectAllowed='move';
+		ev.dataTransfer.setData("Text", ev.target.getAttribute('id'));
 
-	function allowDropStatus(ev) {
-	ev.preventDefault();
-	return false;
-	}
+		}
 
-	function dropComplete(ev) {
-	ev.preventDefault();
-	var src = ev.dataTransfer.getData("Text");
-	ev.target.appendChild(document.getElementById(src));
-	ev.stopPropagation();
-	return false;
-	}
-	</script>
+
+		function myFunction() {
+			alert("Correct!!");
+			location.replace("draganddrop2.php");
+}
+
+
+		function allowDropStatus(ev) {
+		ev.preventDefault();
+		}
+
+
+		function dropComplete(ev) {
+		ev.preventDefault();
+		var data = ev.dataTransfer.getData("Text");
+		var ans = "drag1";
+		if(data==ans){
+		
+				ev.target.appendChild(document.getElementById(data));
+				myFunction();
+		}else{
+				alert("Opps~Try Again");
+
+		}
+
+
+		}
+    document.addEventListener("dragstart", function(ev) {
+     event.target.style.opacity = "0.4";
+ });
+
+    document.addEventListener("dragend", function(ev) {
+     event.target.style.opacity = "1";
+ });
+
+
+		</script>
+
 </head>
 <body>
 <div id='cssmenu'>
@@ -43,29 +69,31 @@
 </ul>
 </div>
 
-
 <div id="body">
 
-<div id="div1" ondrop="return dropComplete(event)" ondragover="return allowDropStatus(event)">
- <img src="drag.jpg" draggable="true" ondragstart="return dragInitialize(event)" width="250" height="150" id="drag1">
-</div>
+<table id="dndbody">
+  <tr>
 
-<div id="div2" ondrop="return dropComplete(event)" ondragover="return allowDropStatus(event)" style="text-align:center;">LOGO</div>
+    <td><div id="div1"><img src="C:\Users\Jason\Desktop\webtech\play\image\drag.jpg" draggable="true" ondragstart="return dragInitialize(event)" width="250" height="150" id="drag1"></div></td>
+    <td><div id="div1"></div></td>
+    <td><div id="div1"><img src="C:\Users\Jason\Desktop\webtech\play\image\banana.jpg" draggable="true" ondragstart="return dragInitialize(event)" width="250" height="150" id="drag5"></div></td>
 
+  </tr>
 
-<div id="div3" ondrop="return dropComplete(event)" ondragover="return allowDropStatus(event)">
- <img src="banana.jpg" draggable="true" ondragstart="return dragInitialize(event)" width="250" height="150" id="drag3">
-</div>
+  <tr>
 
-<div id="div4" ondrop="return dropComplete(event)" ondragover="return allowDropStatus(event)" style="text-align:center;">Banana!!!!!</div>
+  <td></td>
+  <td style="text-align:center;"><strong>Please choose your answer and drag it inside the box given.</strong></td>
+  <td></td>
 
-<div id="div5" ondrop="return dropComplete(event)" ondragover="return allowDropStatus(event)">
- <img src="banana.jpg" draggable="true" ondragstart="return dragInitialize(event)" width="250" height="150" id="drag5">
-</div>
+  <tr>
 
-<div id="div6" ondrop="return dropComplete(event)" ondragover="return allowDropStatus(event)" style="text-align:center;">Banana!!!!!</div>
+  <td></td>
+  <td style=""><div id="answer" ondrop="return dropComplete(event)" ondragover="return allowDropStatus(event)" style="text-align:center;"><strong>LOGO</strong></div></td>
+  <td></td>
 
-
+</tr>
+</table>
 
 </div>
 
